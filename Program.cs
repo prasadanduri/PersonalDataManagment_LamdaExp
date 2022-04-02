@@ -15,7 +15,8 @@ namespace PersonDataManagement
             //RetreivingTopTwoRecords_ForAgeIs_LessThanSixty(listPersonInCity);
             //Retrieve_Record_Age_bet_Thirteen_to_Eighteen(listPersonInCity);
             //Retrieve_Average_Age(listPersonInCity);
-            Check_spaecific_name_present_absent(listPersonInCity);
+            //Check_spaecific_name_present_absent(listPersonInCity);
+            Skip_record_age_less_than_60(listPersonInCity);
         }
         private static void AddRecords(List<Person> listPersonInCity)
         {
@@ -28,36 +29,43 @@ namespace PersonDataManagement
             listPersonInCity.Add(new Person("203456882", "Rita", "62 ,Baramati, Maharashtra", 22));
             listPersonInCity.Add(new Person("203456883", "Geeta", "42 Pune, Maharashtra", 54));
         }
-        public static void RetreivingTopTwoRecords_ForAgeIs_LessThanSixty(List<Person> listPersonInCity)
+        //public static void RetreivingTopTwoRecords_ForAgeIs_LessThanSixty(List<Person> listPersonInCity)
+        //{
+        //    foreach (Person person in listPersonInCity.FindAll(x => (x.Age < 60)).Take(2).ToList())
+        //    {
+        //        Console.WriteLine("Name : " + person.Name + "\t\tAge : " + person.Age);
+        //    }
+        //}
+        //public static void Retrieve_Record_Age_bet_Thirteen_to_Eighteen(List<Person> listPersonInCity)
+        //{
+        //    foreach (Person person in listPersonInCity.FindAll(x => (x.Age >= 13 && x.Age < 19)).ToList())
+        //    {
+        //        Console.WriteLine("Name : " + person.Name + "\t\tAge : " + person.Age);
+        //    }
+        //}
+        //public static void Retrieve_Average_Age(List<Person> listPersonInCity)
+        //{
+        //    var avg_age = listPersonInCity.Average(s => s.Age);
+        //    Console.WriteLine("Average Age in list : " + avg_age);
+        //}
+        //public static void Check_spaecific_name_present_absent(List<Person> listPersonInCity)
+        //{
+        //    Console.WriteLine("Enter name of person you want to check");
+        //    string inputname = Console.ReadLine();
+        //    if (listPersonInCity.Exists(x => x.Name == inputname))
+        //    {
+        //        Console.WriteLine(" A person exists in our list");
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine(" A person not exists in our list");
+        //    }
+        //}
+        public static void Skip_record_age_less_than_60(List<Person> listPersonInCity)
         {
-            foreach (Person person in listPersonInCity.FindAll(x => (x.Age < 60)).Take(2).ToList())
+            foreach (Person pers in listPersonInCity.SkipWhile(e => e.Age < 60))
             {
-                Console.WriteLine("Name : " + person.Name + "\t\tAge : " + person.Age);
-            }
-        }
-        public static void Retrieve_Record_Age_bet_Thirteen_to_Eighteen(List<Person> listPersonInCity)
-        {
-            foreach (Person person in listPersonInCity.FindAll(x => (x.Age >= 13 && x.Age < 19)).ToList())
-            {
-                Console.WriteLine("Name : " + person.Name + "\t\tAge : " + person.Age);
-            }
-        }
-        public static void Retrieve_Average_Age(List<Person> listPersonInCity)
-        {
-            var avg_age = listPersonInCity.Average(s => s.Age);
-            Console.WriteLine("Average Age in list : " + avg_age);
-        }
-        public static void Check_spaecific_name_present_absent(List<Person> listPersonInCity)
-        {
-            Console.WriteLine("Enter name of person you want to check");
-            string inputname = Console.ReadLine();
-            if (listPersonInCity.Exists(x => x.Name == inputname))
-            {
-                Console.WriteLine(" A person exists in our list");
-            }
-            else
-            {
-                Console.WriteLine(" A person not exists in our list");
+                Console.WriteLine("Name : " + pers.Name + " \tAge: " + pers.Age);
             }
         }
     }
