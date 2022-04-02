@@ -7,7 +7,6 @@ namespace PersonDataManagement
     class Program
     {
         static void Main(string[] args)
-
         {
             Console.WriteLine("Welcome to Lambda Expression Program");
             List<Person> listPersonInCity = new List<Person>();
@@ -15,7 +14,8 @@ namespace PersonDataManagement
 
             //RetreivingTopTwoRecords_ForAgeIs_LessThanSixty(listPersonInCity);
             //Retrieve_Record_Age_bet_Thirteen_to_Eighteen(listPersonInCity);
-            Retrieve_Average_Age(listPersonInCity);
+            //Retrieve_Average_Age(listPersonInCity);
+            Check_spaecific_name_present_absent(listPersonInCity);
         }
         private static void AddRecords(List<Person> listPersonInCity)
         {
@@ -37,7 +37,7 @@ namespace PersonDataManagement
         }
         public static void Retrieve_Record_Age_bet_Thirteen_to_Eighteen(List<Person> listPersonInCity)
         {
-            foreach (Person person in listPersonInCity.FindAll(x => (x.Age >= 13 && x.Age < 18)).ToList())
+            foreach (Person person in listPersonInCity.FindAll(x => (x.Age >= 13 && x.Age < 19)).ToList())
             {
                 Console.WriteLine("Name : " + person.Name + "\t\tAge : " + person.Age);
             }
@@ -46,6 +46,19 @@ namespace PersonDataManagement
         {
             var avg_age = listPersonInCity.Average(s => s.Age);
             Console.WriteLine("Average Age in list : " + avg_age);
+        }
+        public static void Check_spaecific_name_present_absent(List<Person> listPersonInCity)
+        {
+            Console.WriteLine("Enter name of person you want to check");
+            string inputname = Console.ReadLine();
+            if (listPersonInCity.Exists(x => x.Name == inputname))
+            {
+                Console.WriteLine(" A person exists in our list");
+            }
+            else
+            {
+                Console.WriteLine(" A person not exists in our list");
+            }
         }
     }
 }
